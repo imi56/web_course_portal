@@ -1,0 +1,19 @@
+.download-qr {
+  text-align: center;
+  margin-top: -20px;
+  margin-bottom: 8px;
+  position: relative;
+  z-index: 1;
+}
+
+.card-placeholder {
+  margin-top: 0px !important;
+  margin-left: 20px !important;
+  margin-right: 40px !important;
+}
+
+canvas {
+  height: auto !important;
+  width: 100% !important;
+  max-width: 350px;
+}

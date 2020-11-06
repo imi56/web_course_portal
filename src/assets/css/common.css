@@ -1,0 +1,38 @@
+/* Spacing */
+
+/* Vertical spacing */
+
+.margin-top-30 {
+  margin-top: 30px !important;
+}
+
+.margin-top-10 {
+  margin-top: 10px!important;
+}
+
+.margin-top-5 {
+  margin-top: 5px !important;
+}
+
+.margin-top-15 {
+  margin-top: 15px !important;
+}
+
+.toast {
+  border-radius: 10px;
+}
+
+small.error {
+  color: #9F3A38 !important;
+}
+
+.uc-first {
+  text-transform:capitalize !important;
+}
+
+/* alignment */
+.float-right {
+  float:right
+}
+
+
