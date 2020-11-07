@@ -32,7 +32,7 @@ class Container extends Component {
           <Grid.Column computer={3} mobile={4} />
           <Grid.Column computer={10} mobile={4}>
             <CardList
-              products={this.props.data.products || []}
+              products={this.props.data.products.products || []}
             />
           </Grid.Column>
         </Grid.Row>

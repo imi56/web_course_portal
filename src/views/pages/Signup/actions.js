@@ -36,10 +36,10 @@ export const phoneChanged = phone => {
   };
 };
 
-export const landmarkNameChanged = org_name => {
+export const landmarkNameChanged = name => {
   return {
     type: ORG_NAME_CHANGED,
-    org_name
+    name
   };
 };
 

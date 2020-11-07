@@ -70,18 +70,18 @@ export default class SignupForm extends Component {
     this.validateOtp(this.props.otp.password);
     this.validateName(
       fv.validateRequiredInput(
-        this.props.signup.org_name,
+        this.props.signup.name,
         this.state.orgNameLabel
       )
     );
 
     const isPhoneInvalid = this.state.phoneValidation.isInvalid;
     const isOtpInvalid = this.state.otpValidation.isInvalid;
-    const isLandmarkNameInvalid = this.state.nameValidation.isInvalid;
+    const isNameInvalid = this.state.nameValidation.isInvalid;
     return (
       this.isInvalid(isPhoneInvalid) ||
       this.isInvalid(isOtpInvalid) ||
-      this.isInvalid(isLandmarkNameInvalid)
+      this.isInvalid(isNameInvalid)
     );
   };
 
@@ -104,7 +104,7 @@ export default class SignupForm extends Component {
       this.props.signupAPI(
         {
           phone: data.phone,
-          name: data.org_name.trim(),
+          name: data.name.trim(),
           otp: this.props.otp.password,
         },
         this.afterSignupNavigation
@@ -137,9 +137,9 @@ export default class SignupForm extends Component {
                 <TextBox
                   label={this.state.orgNameLabel}
                   placeholder="Enter your name"
-                  value={this.props.signup.org_name}
+                  value={this.props.signup.name}
                   maxLength={50}
-                  attr="org_name"
+                  attr="name"
                   changeDispatcher={this.props.signupFormChangedDispatcher}
                   validateField={fv.validateRequiredInput}
                   validationDispatcher={this.validateName}

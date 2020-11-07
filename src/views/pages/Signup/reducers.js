@@ -15,7 +15,7 @@ const intialState = {
   authToken: null,
   errors: null,
   phone: "",
-  org_name: "",
+  name: "",
   landmark_type_id: "",
   domain_name: "",
   orgNameValidation: {},
@@ -57,7 +57,7 @@ const signupReducer = (state = intialState, action) => {
     case ORG_NAME_CHANGED: {
       return {
         ...state,
-        org_name: action.org_name,
+        name: action.name,
       };
     }
 
