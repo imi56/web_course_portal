@@ -1,23 +1,10 @@
-/* Spacing */
-
-/* Vertical spacing */
+/* spacing */
 
 .margin-top-30 {
   margin-top: 30px !important;
 }
 
-.margin-top-10 {
-  margin-top: 10px!important;
-}
-
-.margin-top-5 {
-  margin-top: 5px !important;
-}
-
-.margin-top-15 {
-  margin-top: 15px !important;
-}
-
+/* Styling */
 .toast {
   border-radius: 10px;
 }
@@ -28,6 +15,10 @@ small.error {
 
 .uc-first {
   text-transform:capitalize !important;
+}
+
+.margin-bottom-15 {
+  margin-bottom: 15px !important;
 }
 
 /* alignment */

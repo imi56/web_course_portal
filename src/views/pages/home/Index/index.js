@@ -1,10 +1,12 @@
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { getProductsAPI } from "./actionCreators";
 import Container from "./Container";
 
 const makeMapStateToProps = () => {
   const mapStateToProps = state => {
     return {
+      data: state.getProducts,
     };
   };
   return mapStateToProps;
@@ -13,6 +15,7 @@ const makeMapStateToProps = () => {
 const mapDispatchToProps = dispatch => {
   return bindActionCreators(
     {
+      getProductsAPI
     },
     dispatch
   );
