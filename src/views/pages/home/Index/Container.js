@@ -3,8 +3,7 @@ import { Grid } from "semantic-ui-react";
 import CardPlaceholder from "components/placeholders/Card";
 import ProductCard from "components/cards/ProductCard";
 import {PER_PAGE_PRODUCTS} from "./constants";
-
-
+import Pagination from "components/Pagination";
 
 class Container extends Component {
   constructor(props) {
@@ -12,10 +11,12 @@ class Container extends Component {
     this.props.getProductsAPI();
   }
   render() {
-    const data = this.props.data;
+    const response = this.props.response;
+
+    const totalPages = Math.ceil(response.product_count / PER_PAGE_PRODUCTS);
     let CardList = (props) => {
-      return !data.pending ? (
-        props.products.map((prod) => (
+      return !response.pending ? (
+        response.products.map((prod) => (
           <ProductCard
             key={prod.id}
             prod={prod}
@@ -27,13 +28,26 @@ class Container extends Component {
     };
 
     return (
+      
       <Grid centered stackable>
         <Grid.Row>
           <Grid.Column computer={3} mobile={4} />
           <Grid.Column computer={10} mobile={4}>
             <CardList
-              products={this.props.data.products.products || []}
+              products={response.products || []}
             />
+
+            {response.product_count > PER_PAGE_PRODUCTS && (
+              <Pagination
+                totalPages={totalPages}
+                activePage={response.activePage}
+                getDataAPI={this.props.getProductsAPI}
+                perPageRecords={PER_PAGE_PRODUCTS}
+                attrChangeDispatcher={
+                  this.props.getProductsAttrChangeDispatcher
+                }
+              />
+            )}
           </Grid.Column>
         </Grid.Row>
       </Grid>

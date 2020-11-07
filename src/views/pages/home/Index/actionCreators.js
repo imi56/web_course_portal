@@ -4,6 +4,7 @@ import {
   getProductsPending,
   getProductsFulfilled,
   getProductsRejected,
+  getProductsAttrChanged,
 } from "./actions";
 
 export const getProductsAPI = (filters = {}) => {
@@ -19,5 +20,11 @@ export const getProductsAPI = (filters = {}) => {
       .catch(err => {
         dispatch(getProductsRejected(err.response.data));
       });
+  };
+};
+
+export const getProductsAttrChangeDispatcher = (attr, value) => {
+  return dispatch => {
+    dispatch(getProductsAttrChanged(attr, value));
   };
 };

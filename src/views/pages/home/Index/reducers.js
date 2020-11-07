@@ -2,6 +2,7 @@ import {
   GET_PRODUCTS_FULFILLED,
   GET_PRODUCTS_PENDING,
   GET_PRODUCTS_REJECTED,
+  GET_PRODUCTS_ATTR_CHANGED
 } from "./constants";
 
 const intialState = {
@@ -27,7 +28,8 @@ const getProductsReducer = (state = intialState, action) => {
         pending: false,
         success: true,
         errors: null,
-        products: action.payload.data,
+        products: action.payload.data.products,
+        product_count: action.payload.data.product_count,
       };
     }
     case GET_PRODUCTS_REJECTED: {
@@ -38,6 +40,13 @@ const getProductsReducer = (state = intialState, action) => {
         errors: action.payload,
         products: [],
         product_count: 0,
+      };
+    }
+
+    case GET_PRODUCTS_ATTR_CHANGED: {
+      return {
+        ...state,
+        [action.payload.attr]: action.payload.value,
       };
     }
 
