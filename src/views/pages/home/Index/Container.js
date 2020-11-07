@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Grid } from "semantic-ui-react";
-import "assets/css/card.css";
 import CardPlaceholder from "components/placeholders/Card";
 import ProductCard from "components/cards/ProductCard";
+import {PER_PAGE_PRODUCTS} from "./constants";
 
 
 
@@ -22,7 +22,7 @@ class Container extends Component {
           />
         ))
       ) : (
-          <CardPlaceholder />
+          <CardPlaceholder concernsCount={PER_PAGE_PRODUCTS} />
         );
     };
 

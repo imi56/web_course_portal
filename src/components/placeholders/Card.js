@@ -11,36 +11,23 @@ const PlaceholderHeader = props => {
   return props.concernsCountArr.map((elem, idx) => (
     <Grid.Column key={idx}>
       <Segment raised>
-        <Placeholder>
-          <Placeholder.Header>
-            <Placeholder.Line length="medium" />
-            <Placeholder.Line length="very short" />
-          </Placeholder.Header>
-          <Placeholder.Paragraph>
-            <Placeholder.Line length="long" />
-            <Placeholder.Line length="long" />
-            <Placeholder.Line length="long" />
-            <Placeholder.Line length="long" />
-            <Placeholder.Line length="long" />
-            <Placeholder.Line length="long" />
-            <Placeholder.Line length="long" />
-            <Placeholder.Line length="long" />
-          </Placeholder.Paragraph>
-
-          <Placeholder.Paragraph>
-            <Placeholder.Line length="long" />
-            <Placeholder.Line length="long" />
-          </Placeholder.Paragraph>
-
-          <Placeholder.Paragraph>
-            <Placeholder.Line length="full" />
-            <Placeholder.Line length="full" />
-          </Placeholder.Paragraph>
-        </Placeholder>
+        <Placeholder fluid>
+      <Placeholder.Paragraph>
+        <PlaceholderLines lineCount={9} />
+      </Placeholder.Paragraph>
+    </Placeholder>
       </Segment>
     </Grid.Column>
   ));
 };
+
+const PlaceholderLines = props => {
+  const lineCounttArr = [...Array(props.lineCount).keys()];
+  return lineCounttArr.map((elem, idx) => (
+     <Placeholder.Line key={idx} />
+  ));
+};
+
 
 const CardPlaceholder = props => {
   const concernsCountArr = [...Array(props.concernsCount).keys()];
