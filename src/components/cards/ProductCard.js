@@ -26,8 +26,8 @@ const CardBody = (props) => {
               </Header>
               <Header>
               Type: 
-              <Label as='a'>
-                <Icon name='book' /> {prod.type || "N/A"}
+              <Label className="uc-first" as='a'>
+                <Icon  name='book' /> {prod.product_type || "N/A"}
               </Label>
               </Header>
             </div>
@@ -49,8 +49,14 @@ const CardBody = (props) => {
 
 const ConcernCard = (props) => {
   const prod = props.prod;
+
+  const redirectUrl = () => {
+    if(prod.resource_url) {
+      window.open(prod.resource_url, "_blank")
+    }
+  }
   return (
-    <div className="card margin-bottom-15" >
+    <div className="card margin-bottom-15" onClick={redirectUrl} >
       <Card raised fluid>
         <CardBody prod={prod}/>
       </Card>

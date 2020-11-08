@@ -37,7 +37,7 @@ class Container extends Component {
               products={response.products || []}
             />
 
-            {response.product_count > PER_PAGE_PRODUCTS && (
+            {!response.pending && response.product_count > PER_PAGE_PRODUCTS && (
               <Pagination
                 totalPages={totalPages}
                 activePage={response.activePage}
