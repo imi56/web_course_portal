@@ -1,11 +1,13 @@
 import React from "react";
 import { Card, Grid, Image, Header, Label, Icon } from "semantic-ui-react";
 import { Util } from "classes/common";
-
+import Rating from "components/Rating";
 import "assets/css/card.css";
 
 const CardBody = (props) => {
   const prod = props.prod;
+  const fixedRatingDecimal = prod.avg_rating == 0.0 ? 0 : 1;
+  
   return (
     <Card.Content>
        <Grid centered stackable>
@@ -21,10 +23,18 @@ const CardBody = (props) => {
                   <Header.Subheader>{Util.trimText(prod.description, 165)}</Header.Subheader>
                 </Header.Content>
               </Header>
-              <Header>
+              <span className="rating">{prod.avg_rating.toFixed(fixedRatingDecimal)}</span> 
+              <Rating 
+                id={prod.user_rating.id}
+                prod_id={prod.id} 
+                createRatingAPI={props.createRatingAPI} 
+                rating={prod.user_rating.rating} 
+              /> 
+              
+              <Header as="h4">
                 Offered by:  <Label color="orange">{prod.provider}</Label>
               </Header>
-              <Header>
+              <Header as="h4">
               Type: 
               <Label className="uc-first" as='a'>
                 <Icon  name='book' /> {prod.product_type || "N/A"}
@@ -58,7 +68,7 @@ const ConcernCard = (props) => {
   return (
     <div className="card margin-bottom-15" onClick={redirectUrl} >
       <Card raised fluid>
-        <CardBody prod={prod}/>
+        <CardBody createRatingAPI={props.createRatingAPI} prod={prod}/>
       </Card>
     </div>
   );

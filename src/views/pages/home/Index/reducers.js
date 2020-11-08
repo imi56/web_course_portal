@@ -4,6 +4,8 @@ import {
   GET_PRODUCTS_REJECTED,
   GET_PRODUCTS_ATTR_CHANGED
 } from "./constants";
+import { CREATE_RATING_FULFILLED } from "../Rating/constants";
+
 
 const intialState = {
   pending: false,
@@ -16,6 +18,7 @@ const intialState = {
 
 const getProductsReducer = (state = intialState, action) => {
   switch (action.type) {
+
     case GET_PRODUCTS_PENDING: {
       return {
         ...state,
@@ -42,11 +45,20 @@ const getProductsReducer = (state = intialState, action) => {
         product_count: 0,
       };
     }
-
     case GET_PRODUCTS_ATTR_CHANGED: {
       return {
         ...state,
         [action.payload.attr]: action.payload.value,
+      };
+    }
+    case CREATE_RATING_FULFILLED: {
+      return {
+        ...state,
+        products: state.products.map((product) =>
+        product.id === action.payload.data.id
+            ? { ...product, ...action.payload.data }
+            : product
+        ),
       };
     }
 

@@ -20,6 +20,7 @@ class Container extends Component {
           <ProductCard
             key={prod.id}
             prod={prod}
+            createRatingAPI={props.createRatingAPI}
           />
         ))
       ) : (
@@ -35,6 +36,7 @@ class Container extends Component {
           <Grid.Column computer={10} mobile={4}>
             <CardList
               products={response.products || []}
+              createRatingAPI={this.props.createRatingAPI}
             />
 
             {!response.pending && response.product_count > PER_PAGE_PRODUCTS && (

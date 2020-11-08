@@ -6,4 +6,13 @@ img {
   width: 270px;
   height: 160px;
   object-fit: cover;
+  border-radius: 5px;
+}
+
+.rating {
+  text-align: justify;
+  color: orange;
+  font-weight: bold;
+  font-size: 20px;
+  margin-right: 5px;
 }
