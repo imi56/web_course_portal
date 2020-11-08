@@ -3,6 +3,7 @@ import { Card, Grid, Image, Header, Label, Icon } from "semantic-ui-react";
 import { Util } from "classes/common";
 import Rating from "components/Rating";
 import "assets/css/card.css";
+import RatingPlaceholder from "components/placeholders/Rating";
 
 const CardBody = (props) => {
   const prod = props.prod;
@@ -22,13 +23,21 @@ const CardBody = (props) => {
                   <Header.Subheader>{Util.trimText(prod.description, 165)}</Header.Subheader>
                 </Header.Content>
               </Header>
-              <Rating 
-                id={prod.user_rating.id}
-                prod_id={prod.id} 
-                createRatingAPI={props.createRatingAPI} 
-                rating={prod.user_rating.rating} 
-              /> 
-              <span className="rating">{prod.user_rating.rating ? "Thanks for your rating" : "Rate it"}</span> 
+              {
+                props.updatingProd == prod.id ?  (<RatingPlaceholder />) : (
+                    <>
+                      <Rating 
+                        id={prod.user_rating.id}
+                        prod_id={prod.id} 
+                        createRatingAPI={props.createRatingAPI} 
+                        createRatingAttrChangeDispatcher={props.createRatingAttrChangeDispatcher} 
+                        rating={prod.user_rating.rating} 
+                      /> 
+                      <span className="rating">{prod.user_rating.rating ? "Thanks for your rating" : "Rate it"}</span> 
+                    </>
+                  )
+              }
+              
               <Header as="h4">
                 Offered by:  <Label color="orange">{prod.provider}</Label>
               </Header>
@@ -66,7 +75,12 @@ const ConcernCard = (props) => {
   return (
     <div className="card margin-bottom-15" onClick={redirectUrl} >
       <Card raised fluid>
-        <CardBody createRatingAPI={props.createRatingAPI} prod={prod}/>
+        <CardBody 
+          createRatingAPI={props.createRatingAPI} 
+          createRatingAttrChangeDispatcher={props.createRatingAttrChangeDispatcher} 
+          prod={prod}
+          updatingProd={props.updatingProd}
+        />
       </Card>
     </div>
   );

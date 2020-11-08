@@ -1,13 +1,15 @@
 import {
   CREATE_RATING_FULFILLED,
   CREATE_RATING_PENDING,
-  CREATE_RATING_REJECTED
+  CREATE_RATING_REJECTED,
+  CREATE_RATING_ATTR_CHANGED,
 } from "./constants";
 const intialState = {
   pending: false,
   success: false,
   errors: null,
-  data: {}
+  data: {},
+  currentlyRatingProductId: null
 };
 
 const createRatingReducer = (state = intialState, action) => {
@@ -24,7 +26,8 @@ const createRatingReducer = (state = intialState, action) => {
         pending: false,
         success: true,
         errors: null,
-        data: action.payload.data
+        data: action.payload.data,
+        currentlyRatingProductId: null,
       };
     }
     case CREATE_RATING_REJECTED: {
@@ -33,7 +36,14 @@ const createRatingReducer = (state = intialState, action) => {
         pending: false,
         success: false,
         errors: action.payload,
-        data: {}
+        data: {},
+        currentlyRatingProductId: null,
+      };
+    }
+    case CREATE_RATING_ATTR_CHANGED: {
+      return {
+        ...state,
+        [action.payload.attr]: action.payload.value,
       };
     }
 

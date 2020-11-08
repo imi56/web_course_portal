@@ -15,19 +15,22 @@ class Container extends Component {
 
     const totalPages = Math.ceil(response.product_count / PER_PAGE_PRODUCTS);
     let CardList = (props) => {
+      
       return !response.pending ? (
         response.products.map((prod) => (
           <ProductCard
             key={prod.id}
             prod={prod}
             createRatingAPI={props.createRatingAPI}
+            createRatingAttrChangeDispatcher={props.createRatingAttrChangeDispatcher}
+            updatingProd={props.updatingProd}
           />
         ))
       ) : (
           <CardPlaceholder concernsCount={PER_PAGE_PRODUCTS} />
         );
     };
-
+    
     return (
       
       <Grid centered stackable>
@@ -37,6 +40,8 @@ class Container extends Component {
             <CardList
               products={response.products || []}
               createRatingAPI={this.props.createRatingAPI}
+              createRatingAttrChangeDispatcher={this.props.createRatingAttrChangeDispatcher}
+              updatingProd={this.props.ratingResponse.currentlyRatingProductId}
             />
 
             {!response.pending && response.product_count > PER_PAGE_PRODUCTS && (

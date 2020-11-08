@@ -3,13 +3,14 @@ import { Rating} from "semantic-ui-react";
 
 const CustomRating = (props) => {
   const ratingChangeHandler = (e, { rating, maxRating }) => {
+    const prodId = props.prod_id;
     e.stopPropagation();
+    props.createRatingAttrChangeDispatcher("currentlyRatingProductId", prodId)
     props.createRatingAPI({
       id: props.id,
-      product_id: props.prod_id,
+      product_id: prodId,
       rating: rating
     });
-    console.log(rating, props.prod_id);
   };
   
   return (
