@@ -6,7 +6,6 @@ import "assets/css/card.css";
 
 const CardBody = (props) => {
   const prod = props.prod;
-  const fixedRatingDecimal = prod.avg_rating == 0.0 ? 0 : 1;
   
   return (
     <Card.Content>
@@ -23,14 +22,13 @@ const CardBody = (props) => {
                   <Header.Subheader>{Util.trimText(prod.description, 165)}</Header.Subheader>
                 </Header.Content>
               </Header>
-              <span className="rating">{prod.avg_rating.toFixed(fixedRatingDecimal)}</span> 
               <Rating 
                 id={prod.user_rating.id}
                 prod_id={prod.id} 
                 createRatingAPI={props.createRatingAPI} 
                 rating={prod.user_rating.rating} 
               /> 
-              
+              <span className="rating">{prod.user_rating.rating ? "Thanks for your rating" : "Rate it"}</span> 
               <Header as="h4">
                 Offered by:  <Label color="orange">{prod.provider}</Label>
               </Header>
