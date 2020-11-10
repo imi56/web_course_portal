@@ -5,6 +5,7 @@ import {
   getProductsFulfilled,
   getProductsRejected,
   getProductsAttrChanged,
+  productFilterChanged,
 } from "./actions";
 
 export const getProductsAPI = (filters = {}) => {
@@ -26,5 +27,15 @@ export const getProductsAPI = (filters = {}) => {
 export const getProductsAttrChangeDispatcher = (attr, value) => {
   return dispatch => {
     dispatch(getProductsAttrChanged(attr, value));
+  };
+};
+
+export const productFilterChangeDispatcher = (
+  attr,
+  value,
+  displayValue = null
+) => {
+  return dispatch => {
+    dispatch(productFilterChanged(attr, value, displayValue));
   };
 };

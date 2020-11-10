@@ -4,6 +4,7 @@ import CardPlaceholder from "components/placeholders/Card";
 import ProductCard from "components/cards/ProductCard";
 import {PER_PAGE_PRODUCTS} from "./constants";
 import Pagination from "components/Pagination";
+import Sidebar from "./Sidebar";
 
 class Container extends Component {
   constructor(props) {
@@ -27,7 +28,7 @@ class Container extends Component {
           />
         ))
       ) : (
-          <CardPlaceholder concernsCount={PER_PAGE_PRODUCTS} />
+          <CardPlaceholder productCount={PER_PAGE_PRODUCTS} />
         );
     };
     
@@ -35,8 +36,24 @@ class Container extends Component {
       
       <Grid centered stackable>
         <Grid.Row>
-          <Grid.Column computer={3} mobile={4} />
-          <Grid.Column computer={10} mobile={4}>
+          <Grid.Column computer={4} mobile={4}>
+            <div className="card d-margin-left-50">
+              <Sidebar
+                filterChangeDispatcher={
+                  this.props.productFilterChangeDispatcher
+                }
+                getProductsAPI={this.props.getProductsAPI}
+                filters={response.filters}
+                displayFilters={response.displayFilters}
+                attrChangeDispatcher={
+                  this.props.getProductsAttrChangeDispatcher
+                }
+                providers={response.providers}
+                types={response.types}
+              />
+            </div>
+          </Grid.Column>
+          <Grid.Column computer={9} mobile={4}>
             <CardList
               products={response.products || []}
               createRatingAPI={this.props.createRatingAPI}
@@ -44,8 +61,9 @@ class Container extends Component {
               updatingProd={this.props.ratingResponse.currentlyRatingProductId}
             />
 
-            {!response.pending && response.product_count > PER_PAGE_PRODUCTS && (
+            {!response.pending && response.products.length > PER_PAGE_PRODUCTS && (
               <Pagination
+                filters={response.filters}
                 totalPages={totalPages}
                 activePage={response.activePage}
                 getDataAPI={this.props.getProductsAPI}

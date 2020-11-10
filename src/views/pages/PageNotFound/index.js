@@ -1,7 +1,7 @@
 import React from "react";
 import "assets/css/pages/pageNotFound.css";
 
-const ConcernCard = (props) => {
+const Card = (props) => {
   return (
     <div id="notfound">
       <div className="notfound">
@@ -25,4 +25,4 @@ const ConcernCard = (props) => {
   );
 };
 
-export default ConcernCard;
+export default Card;

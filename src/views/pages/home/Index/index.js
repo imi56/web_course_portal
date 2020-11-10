@@ -1,7 +1,14 @@
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { getProductsAPI, getProductsAttrChangeDispatcher } from "./actionCreators";
-import { createRatingAPI, createRatingAttrChangeDispatcher } from "../Rating/actionCreators";
+import { 
+  getProductsAPI, 
+  getProductsAttrChangeDispatcher,
+  productFilterChangeDispatcher,
+ } from "./actionCreators";
+import { 
+  createRatingAPI, 
+  createRatingAttrChangeDispatcher,
+} from "../Rating/actionCreators";
 import Container from "./Container";
 
 const makeMapStateToProps = () => {
@@ -21,6 +28,7 @@ const mapDispatchToProps = dispatch => {
       getProductsAttrChangeDispatcher,
       createRatingAPI,
       createRatingAttrChangeDispatcher,
+      productFilterChangeDispatcher,
     },
     dispatch
   );

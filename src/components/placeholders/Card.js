@@ -3,12 +3,12 @@ import { Placeholder, Segment, Grid } from "semantic-ui-react";
 
 const CardPlaceholders = props => (
   <div>
-    <CardPlaceholder concernsCount={props.concernsCount} />
+    <CardPlaceholder productCount={props.productCount} />
   </div>
 );
 
 const PlaceholderHeader = props => {
-  return props.concernsCountArr.map((elem, idx) => (
+  return props.productCountArr.map((elem, idx) => (
     <Grid.Column key={idx}>
       <Segment raised>
         <Placeholder fluid>
@@ -30,10 +30,10 @@ const PlaceholderLines = props => {
 
 
 const CardPlaceholder = props => {
-  const concernsCountArr = [...Array(props.concernsCount).keys()];
+  const productCountArr = [...Array(props.productCount).keys()];
   return (
     <Grid columns={1} stackable>
-      <PlaceholderHeader concernsCountArr={concernsCountArr} />
+      <PlaceholderHeader productCountArr={productCountArr} />
     </Grid>
   );
 };

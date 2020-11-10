@@ -64,7 +64,7 @@ const CardBody = (props) => {
   );
 };
 
-const ConcernCard = (props) => {
+const ProductCard = (props) => {
   const prod = props.prod;
 
   const redirectUrl = () => {
@@ -86,4 +86,4 @@ const ConcernCard = (props) => {
   );
 };
 
-export default ConcernCard;
+export default ProductCard;

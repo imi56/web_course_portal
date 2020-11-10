@@ -4,6 +4,10 @@
   margin-top: 30px !important;
 }
 
+.margin-top-5 {
+  margin-top: 5px;
+}
+
 /* Styling */
 .toast {
   border-radius: 10px;
