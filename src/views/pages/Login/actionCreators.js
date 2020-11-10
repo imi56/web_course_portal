@@ -1,4 +1,4 @@
-import axios from "axios";
+import httpClient from "lib/httpClient";
 import {
   loginPending,
   loginFulfilled,
@@ -13,31 +13,24 @@ import Authentication from "src/helpers/Authentication";
 export const loginAPI = (data, afterLoginNavigation) => {
   return dispatch => {
     dispatch(loginPending());
-    return axios
-      .post(`${process.env.REACT_APP_API_URL}/login`, data)
+    httpClient
+      .request("post", "login", data, false)
       .then(res => {
-        Authentication.removeToken("coursePortalAuthData")
-          .then(() => {
-            Authentication.setData(res.data.data)
-              .then(() => {
-                dispatch(loginFulfilled(res.data));
-                dispatch(otpChangeDispatcher(""));
-                dispatch(phoneChangeDispatcher(""));
-                afterLoginNavigation();
-              })
-              .catch(error => {
-                console.log(error);
-              });
-          })
-          .catch(err => {
-            console.log("login error", err);
+        Authentication.removeToken("coursePortalAuthData").then(() => {
+          Authentication.setData(res.data).then(() => {
+            dispatch(loginFulfilled(res));
+            dispatch(otpChangeDispatcher(""));
+            dispatch(phoneChangeDispatcher(""));
+            afterLoginNavigation();
+          }).catch(error => {
+              console.log(error);
           });
-      })
-      .catch(err => {
+        })
+      }).catch((err) => {
         Authentication.removeToken("coursePortalAuthData");
         dispatch(loginRejected(err.response.data));
         Util.errorToast(err.response.data.messages[0]);
-      });
+    });
   };
 };
 

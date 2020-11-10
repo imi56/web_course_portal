@@ -1,4 +1,5 @@
-import axios from "axios";
+import httpClient from "lib/httpClient";
+
 import {
   signupPending,
   signupFulfilled,
@@ -16,11 +17,12 @@ import Authentication from "src/helpers/Authentication";
 export const signupAPI = (data, afterSignupNavigation) => {
   return dispatch => {
     dispatch(signupPending());
-    return axios
-      .post(`${process.env.REACT_APP_API_URL}/sign_up`, data)
+
+    httpClient
+      .request("post", "sign_up", data, false )
       .then(res => {
-        Authentication.setData(res.data.data);
-        dispatch(signupFulfilled(res.data));
+        Authentication.setData(res.data);
+        dispatch(signupFulfilled(res));
         dispatch(otpChangeDispatcher(""));
         dispatch(phoneChangeDispatcher(""));
         afterSignupNavigation();

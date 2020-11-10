@@ -1,4 +1,5 @@
-import axios from "axios";
+import httpClient from "lib/httpClient";
+
 import {
   sendOtpPending,
   sendOtpFulfilled,
@@ -10,14 +11,14 @@ import { Util } from "classes/common";
 export const sendOtpAPI = data => {
   return dispatch => {
     dispatch(sendOtpPending());
-    return axios
-      .post(`${process.env.REACT_APP_API_URL}/otps`, data)
+    httpClient
+      .request("post", "otps", data, false)
       .then(res => {
-        dispatch(sendOtpFulfilled(res.data));
-        Util.successToast(res.data.messages[0]);
+        dispatch(sendOtpFulfilled(res));
+        Util.successToast(res.messages[0]);
       })
       .catch(err => {
-        dispatch(sendOtpRejected(err.response.data));
+        dispatch(sendOtpRejected(err.response));
         Util.errorToast(err.response.data.messages[0]);
       });
   };
