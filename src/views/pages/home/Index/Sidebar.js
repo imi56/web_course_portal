@@ -7,7 +7,7 @@ const Sidebar = (props) => {
     if (props.filters[name] !== value) {
       let filters = { ...props.filters };
       filters[name] = value;
-      props.filterChangeDispatcher(name, value, e.target.textContent);
+      props.filterChangeDispatcher(name, value, value);
       props.getProductsAPI(filters);
     }
   };

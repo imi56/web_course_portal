@@ -1,11 +1,20 @@
 import React from "react";
-import { Placeholder, Segment, Grid } from "semantic-ui-react";
+import { Placeholder, Segment, Grid, Message } from "semantic-ui-react";
 
-const CardPlaceholders = props => (
-  <div>
-    <CardPlaceholder productCount={props.productCount} />
-  </div>
-);
+const CardPlaceholders = props => {
+  
+  return (
+    !props.pending && props.resultCount == 0 ? ( 
+      <Message info>
+        <Message.Header>No results found</Message.Header>
+        <p>Try changing filters</p>
+      </Message>
+    ) : (
+      <CardPlaceholder productCount={props.productCount} />
+    )
+  )
+  
+}
 
 const PlaceholderHeader = props => {
   return props.productCountArr.map((elem, idx) => (

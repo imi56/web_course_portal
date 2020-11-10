@@ -13,11 +13,11 @@ class Container extends Component {
   }
   render() {
     const response = this.props.response;
-
+    const prodResultCount = response.products.length;
     const totalPages = Math.ceil(response.product_count / PER_PAGE_PRODUCTS);
     let CardList = (props) => {
       
-      return !response.pending ? (
+      return !response.pending && prodResultCount > 0 ? (
         response.products.map((prod) => (
           <ProductCard
             key={prod.id}
@@ -28,7 +28,7 @@ class Container extends Component {
           />
         ))
       ) : (
-          <CardPlaceholder productCount={PER_PAGE_PRODUCTS} />
+          <CardPlaceholder pending={response.pending} resultCount={prodResultCount} productCount={PER_PAGE_PRODUCTS} />
         );
     };
     
