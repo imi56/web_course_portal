@@ -61,7 +61,7 @@ class Container extends Component {
               updatingProd={this.props.ratingResponse.currentlyRatingProductId}
             />
 
-            {!response.pending && response.products.length > PER_PAGE_PRODUCTS && (
+            {!response.pending && response.product_count > PER_PAGE_PRODUCTS && (
               <Pagination
                 filters={response.filters}
                 totalPages={totalPages}

@@ -20,7 +20,7 @@ const CardBody = (props) => {
               <Header as="h3">
                 <Header.Content>
                   {prod.title}
-                  <Header.Subheader>{Util.trimText(prod.description, 165)}</Header.Subheader>
+                  <Header.Subheader>{Util.trimText(prod.description, 130)}</Header.Subheader>
                 </Header.Content>
               </Header>
               {

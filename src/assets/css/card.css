@@ -3,7 +3,7 @@
 }
 
 img {
-  width: 270px;
+  max-width: 270px;
   height: 160px;
   object-fit: cover;
   border-radius: 5px;
